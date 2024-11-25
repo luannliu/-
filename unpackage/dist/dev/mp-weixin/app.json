@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/tabVideo",
+    "pages/index/appIndex-n",
+    "pages/details/details-v",
+    "pages/details/video-see/video-seev",
+    "pages/news/news",
+    "pages/user/user"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "App",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#FFFFFF",
+    "borderStyle": "black",
+    "backgroundColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/index/appIndex-n",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/tabVideo",
+        "text": "tab视频"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

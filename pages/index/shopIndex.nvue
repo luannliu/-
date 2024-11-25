@@ -1,0 +1,55 @@
+<template>
+	<view class="tabsPage-shop">
+		<view :style="{height:statusBarHeight+'px'}"></view>
+		<text v-for="(item,index) in 9" :key="index">商城</text>
+	</view>
+</template>
+
+<script>
+	const deviceInfo = uni.getSystemInfoSync()
+	export default {
+		props: {
+			/* 当前tabsPage的下标 */
+			pageIndex: {
+				type: Number,
+				default: 0
+			},
+			/* 当前tab栏下标 */
+			tabIndex: {
+				type: Number,
+				default: 0
+			},
+			/* 当前tab栏数据 */
+			tabItem: {
+				type: Object,
+				default: () => {}
+			},
+			statusBarHeight: {
+				type: Number,
+				default: 0
+			}
+		},
+		data() {
+			return {
+				statusBarHeight: deviceInfo.statusBarHeight,
+				screenWidth: deviceInfo.screenWidth || 0, //屏幕的宽度
+				screenHeight: deviceInfo.screenHeight, //屏幕的高度
+				// 当前组件是否已经加载过了
+				firstLoaded: false,
+			}
+		},
+		methods: {
+			/* 初始加载 */
+			loadTabData() {
+				this.firstLoaded = true
+			},
+		}
+	}
+</script>
+
+<style>
+	.tabsPage-shop {
+		flex: 1;
+		background-color: #999;
+	}
+</style>

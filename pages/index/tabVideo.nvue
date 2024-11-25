@@ -1,0 +1,183 @@
+<template>
+	<view class="tabs">
+		<view class="head" :style="{top:statusBarHeight+'px',width:screenWidth+'px'}">
+			<view class="head-item" @click="tabChange(index)" v-for="(item,index) in tabList" :key="index">
+				<text class="head-item-text" :class="tabIndex == index ?'head-item-textActive':''">{{item.name}}</text>
+				<view class="head-item-sign" v-if="tabIndex == index"></view>
+			</view>
+		</view>
+
+		<swiper class="tab-box" ref="swiper1" :duration="300" :current="tabIndex" @transition="onswiperscroll"
+			@animationfinish="animationfinish" @onAnimationEnd="animationfinish" @change="onswiperchange">
+			<swiper-item class="swiper-item" v-for="(page, index) in tabList" :key="index">
+				<view style="flex: 1;position: relative;">
+					<tabsPage :ref="'page' + index" :pageIndex="index" :tabIndex="tabIndex" :tabItem="page"
+						:statusBarHeight="statusBarHeight"></tabsPage>
+				</view>
+			</swiper-item>
+		</swiper>
+
+		<!-- 解决app端视频滑动进度条和swiper冲突滑动遮罩图层 -->
+		<!-- #ifdef APP-PLUS -->
+		<view class="vodProgress" @touchmove="touchmoveSlider" @touchstart="touchmoveSlider" @touchend="touchendSlider"
+			v-if="tabIndex != 0"></view>
+		<!-- #endif -->
+
+	</view>
+</template>
+<script>
+	const deviceInfo = uni.getSystemInfoSync()
+	import tabsPage from './tabs-page.vue'
+	export default {
+		components: {
+			tabsPage
+		},
+		data() {
+			return {
+				statusBarHeight: deviceInfo.statusBarHeight,
+				screenWidth: deviceInfo.screenWidth || 0, //屏幕的宽度
+				screenHeight: deviceInfo.screenHeight, //屏幕的高度
+				tabList: [{
+					id: 'tab01',
+					name: '商城',
+				}, {
+					id: 'tab02',
+					name: '关注',
+				}, {
+					id: 'tab03',
+					name: '朋友',
+				}, {
+					id: 'tab04',
+					name: '推荐',
+				}],
+				tabIndex: 3, //默认进入推荐页
+				pageList: [],
+				tapOpen: false //防止swiper+点击造成二次触发
+			}
+		},
+		onReady() {
+			for (var i = 0; i < this.tabList.length; i++) {
+				let item = this.$refs['page' + i]
+				this.pageList.push(item[0])
+			}
+			this.changeSwitchTab(this.tabIndex)
+		},
+		methods: {
+			tabChange(index) {
+				this.tabIndex = index
+				this.tapOpen = true //点击触发
+				this.changeSwitchTab(index)
+			},
+			changeSwitchTab(index) {
+				this.$nextTick(() => {
+					this.tapOpen = false //还原变量
+					if (!this.pageList[this.tabIndex].firstLoaded) {
+						this.pageList[this.tabIndex].loadTabData() //初始加载
+					}
+				})
+			},
+			/* 必须存在，否则animationfinish的下标会失效 */
+			onswiperchange(e) {
+				let index = e.detail.current
+				this.tabIndex = index
+				if (!this.tapOpen) { //swiper触发
+					this.changeSwitchTab(index)
+
+				}
+			},
+			onswiperscroll(e) {
+				// this.$refs.tabRef.onswiperscroll(e)
+			},
+			animationfinish(e) {
+				// this.$refs.tabRef.animationfinish(e)
+			},
+			touchmoveSlider(event) {
+				this.pageList[this.tabIndex].tabPageTouchmoveSlider(event)
+			},
+			touchendSlider(event) {
+				this.pageList[this.tabIndex].tabPageTouchendSlider(event)
+			}
+		}
+	}
+</script>
+<style scoped lang="scss">
+	.tabs {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #000000;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		overflow: hidden;
+	}
+
+	.head {
+		position: absolute;
+		top: 0;
+		flex-direction: row;
+		justify-content: center;
+		z-index: 1;
+
+		&-item {
+			position: relative;
+			height: 75rpx;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			&-text {
+				color: #eee;
+				font-size: 32rpx;
+				margin: 0 20rpx;
+				font-weight: bold;
+			}
+
+			&-textActive {
+				color: #ffffff;
+				font-size: 34rpx;
+			}
+
+			&-sign {
+				position: absolute;
+				bottom: 0;
+				left: 30rpx;
+				width: 50rpx;
+				height: 5rpx;
+				background-color: #ffffff;
+			}
+		}
+	}
+
+	.tab-box {
+		flex: 1;
+	}
+
+	.swiper-item {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex: 1;
+		flex-direction: column;
+	}
+
+	.page-item {
+		flex: 1;
+		flex-direction: row;
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	}
+
+	.vodProgress {
+		position: absolute;
+		bottom: 0;
+		height: 18px;
+		width: 750rpx;
+	}
+</style>

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "个人信息",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "loadingt": "/components/tsp-video/tsp-load/tsp-loading",
+    "uniloadmore": "/components/tsp-video/tsp-load/tsp-load-more"
+  }
+}

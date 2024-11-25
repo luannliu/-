@@ -1,0 +1,72 @@
+
+view,
+label,
+swiper-item,
+scroll-view {
+  display:flex;
+  flex-direction:column;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+  align-items: stretch;
+  align-content: flex-start;
+}
+view,
+image,
+input,
+scroll-view,
+swiper,
+swiper-item,
+text,
+textarea,
+video {
+  position: relative;
+  border: 0px solid #000000;
+  box-sizing: border-box;
+}
+swiper-item {
+  position: absolute;
+}
+button {
+  margin: 0;
+}
+
+
+.pageBox{
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	background-color: #000000;
+	flex: 1;
+}
+.automatic{
+	position: absolute;
+
+	z-index: 20;
+
+	bottom: 230rpx;
+	right: 50rpx;
+	font-size: 32rpx;
+	color: white;
+}
+
+
+.tabsPage.data-v-b33b42d0 {
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+
+	flex: 1;
+}
+.tabsPage-item.data-v-b33b42d0 {
+	flex: 1;
+}
+

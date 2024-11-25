@@ -1,0 +1,106 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/tabVideo",
+			"style": {
+				"navigationBarTitleText": "tab视频",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/index/appIndex-n",
+			"style": {
+				"navigationBarTitleText": "uni-app",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		// #ifndef APP-PLUS
+		{
+			"path": "pages/details/details-v",
+			"style": {
+				"navigationBarTitleText": "个人信息",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/details/video-see/video-seev",
+			"style": {
+				"navigationBarTitleText": "视频预览",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		// #endif
+
+		// #ifdef APP-PLUS
+		{
+			"path": "pages/details/details-n",
+			"style": {
+				"navigationBarTitleText": "个人信息",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/details/video-see/video-seen",
+			"style": {
+				"navigationBarTitleText": "视频预览",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		// #endif
+		{
+			"path": "pages/news/news",
+			"style": {
+				"navigationBarTitleText": "消息",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "我",
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#999",
+		"selectedColor": "#FFFFFF",
+		"borderStyle": "black",
+		"backgroundColor": "#000000",
+		// #ifdef APP-PLUS
+		"fontSize": "15px",
+		// #endif
+		"list": [{
+			"pagePath": "pages/index/appIndex-n",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/index/tabVideo",
+			"text": "tab视频"
+		}, {
+			"pagePath": "pages/news/news",
+			"text": "消息"
+		}, {
+			"pagePath": "pages/user/user",
+			"text": "我的"
+		}]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "App",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [{
+			"name": "", //模式名称
+			"path": "", //启动页面，必选
+			"query": "" //启动参数，在页面的onLoad函数里面得到
+		}]
+	}
+}

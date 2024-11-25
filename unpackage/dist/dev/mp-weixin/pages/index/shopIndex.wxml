@@ -1,0 +1,1 @@
+<view class="tabsPage-shop"><view style="{{'height:'+(statusBarHeight+'px')+';'}}"></view><block wx:for="{{9}}" wx:for-item="item" wx:for-index="index" wx:key="index"><text>商城</text></block></view>

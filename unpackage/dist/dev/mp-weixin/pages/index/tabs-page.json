@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "app-index": "/pages/index/appIndex-n",
+    "shop-index": "/pages/index/shopIndex"
+  }
+}

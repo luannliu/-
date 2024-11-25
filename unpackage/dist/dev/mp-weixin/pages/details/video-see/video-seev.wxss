@@ -1,0 +1,94 @@
+
+page{
+	background-color: #000;
+}
+.content{
+	width: 100%;
+	min-height: 100%;
+}
+.blackImg{
+	width: 45rpx;
+	height: 45rpx;
+	position: fixed;
+	top: 0;
+	left: 30rpx;
+	z-index: 100;
+}
+.f{
+	display: flex;
+}
+.frc{
+	flex-direction: row;
+	align-items: center;
+}
+.theory-layer{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9;
+}
+.discuss{
+	position: absolute;
+	bottom: 0;
+	width: 750rpx;
+	left: 0;
+	z-index: 10;
+	height: 50px;
+	background-color: #000;
+	align-items: center;
+	justify-content: center;
+}
+.discuss-active{
+	background-color: #FFFFFF;
+}
+.discuss-box{
+	width: 680rpx;
+	height: 40px;
+}
+.discuss-left{
+	background-color: #000;
+	height: 40px;
+	border-radius: 20px;
+	flex: 1;
+	padding: 0 30rpx;
+	justify-content: space-between;
+}
+.discuss-left-active{
+	background-color: #E5E5E3;
+}
+.discuss-left-input{
+	height: 40px;
+}
+.discuss-left-ej{
+	position: relative;
+	top: -7rpx;
+	font-size: 50rpx;
+	font-weight: bold;
+	color: #666666;
+}
+.discuss-left-img{
+	width: 50rpx;
+	height: 50rpx;
+	margin-left: 15rpx;
+}
+.discuss-right{
+	position: relative;
+	width: 45rpx;
+	height: 45rpx;
+	margin-left: 10rpx;
+	background-color: #FFFFFF;
+	border-radius: 45rpx;
+	justify-content: center;
+}
+.discuss-right-img{
+	position: absolute;
+	top: -10rpx;
+	left: -10rpx;
+	width: 65rpx;
+	height: 65rpx;
+	-webkit-transform: rotate(-90deg);
+	        transform: rotate(-90deg);
+}
+
